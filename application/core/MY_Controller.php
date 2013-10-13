@@ -5,8 +5,7 @@ class MY_Controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->data = array();
-		$this->data['title'] = '帰省日調整さん - 海士町';
+		$this->data['title'] = '<small>帰郷日日調整さん:島根県津和野町</small>';
 		$this->load->helper(array('my_layout', 'form'));
 	}
-
 }

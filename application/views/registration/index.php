@@ -50,6 +50,16 @@ if ($user) {
 <body>
 welcome
 <?php
+
+error_reporting(E_ALL);
+$are=isset($_REQUEST["are"])? $_REQUEST["are"] : null;
+if($are){
+
+
+
+ echo ("あれや<br />");
+}
+
 try {
 	if($user) {
 		$user_profile = $facebook->api('/me?locale=ja_JP');
@@ -98,11 +108,11 @@ header("Location: ../../main/index");
 
 mysql_close($link);
 ?>
-<form name="Hai" method="POST" action="index.php">
-<input type="hidden" name="answer" value="1">
-<input type="submit" value="はい">
+<form method="post">
+<p>
+<input type="submit" name="are" value="＃１ボタン" >
+</p>
 </form>
-
 
 <?php
 
@@ -120,5 +130,7 @@ mysql_close($link);
 	error_log($e->getType());
 	error_log($e->getMessage());
 }
+
+
 ?>
 </body>
