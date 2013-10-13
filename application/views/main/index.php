@@ -1,7 +1,7 @@
-<div>
-<span class="glyphicon glyphicon-circle-arrow-up">前の週へ</span>
+<div class='container customcolor-subheader'>
+	<span class="glyphicon glyphicon-circle-arrow-up">前の週へ</span>
 </div>
-
+<div class='container'>
 <?php for($x=0; $x<7; $x++): ?>
 	<hr>
 	<div class="row">
@@ -25,8 +25,8 @@
 		</div>
 	</div>
 <?php endfor; ?>
-
+</div>
 <hr />
-<div>
-<span class="glyphicon glyphicon-circle-arrow-down">次の週へ</span>
+<div class='container customcolor-subheader'>
+	<span class="glyphicon glyphicon-circle-arrow-down">次の週へ</span>
 </div>

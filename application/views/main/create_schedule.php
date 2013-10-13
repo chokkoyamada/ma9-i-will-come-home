@@ -1,7 +1,7 @@
 <div>
 帰省日を選択してください
 <div class="well">
-<?php echo form_open('main/submit_schedule'); ?>
+<?php echo form_open('main/index'); ?>
 
 <div id="datetimepicker1" class="input-append date">
 開始日

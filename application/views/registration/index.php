@@ -48,16 +48,60 @@ if ($user) {
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-welcome
 <?php
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 $are=isset($_REQUEST["are"])? $_REQUEST["are"] : null;
 if($are){
 
+$link = mysql_connect('localhost', 'ma9nagoya', 'ma9nagoyapasswd');
+if (!$link) {
+    die('接続失敗です。'.mysql_error());
+}
+
+$db_selected = mysql_select_db('ma9nagoya', $link);
+if (!$db_selected){
+    die('データベース選択失敗です。'.mysql_error());
+}
+//$query = sprintf("SELECT * FROM cities WHERE cities_full_name='%s'",mysql_real_escape_string($user_hometown));
+		$user_name = $user_profile['name'];
+//$query = sprintf("INSERT INTO users (name,fb_id) VALUES (%s,%s)",mysql_real_escape_string($user_name),mysql_real_escape_string($user));
+$query = "INSERT INTO users (name,fb_id) VALUES ('$user_name','$user')";
 
 
- echo ("あれや<br />");
+$result = mysql_query($query);
+if (!$result) {
+    die('クエリーが失敗しました。'.mysql_error());
+	echo "クエリー失敗";
+}
+
+//$query = "INSERT INTO user_cities (id,citites_code) VALUES ('$user_name','$user')";
+
+
+$result = mysql_query($query);
+if (!$result) {
+    die('クエリーが失敗しました。'.mysql_error());
+	echo "クエリー失敗";
+}
+//
+//if (!$result) {
+//    $message  = 'Invalid query: ' . mysql_error() . "\n";
+//    $message .= 'Whole query: ' . $query;
+//    die($message);
+//}
+//
+//while ($row = mysql_fetch_assoc($result)) {
+//    //echo $row['cities_code'];
+//    //echo $row['cities_name'];
+//    //echo $row['pref_name'];
+//header("Location: ../../main/index");
+//}
+//	echo "ユーザ登録してください";
+//
+//mysql_close($link);
+//
+//
+//
 }
 
 try {
@@ -84,7 +128,7 @@ if (!$db_selected){
     die('データベース選択失敗です。'.mysql_error());
 }
 //$query = sprintf("SELECT * FROM cities WHERE cities_full_name='%s'",mysql_real_escape_string($user_hometown));
-$query = sprintf("SELECT * FROM cities WHERE cities_full_name='%s'",mysql_real_escape_string($user));
+$query = sprintf("SELECT * FROM users WHERE fb_id='%s'",mysql_real_escape_string($user));
 
 $result = mysql_query($query);
 if (!$result) {
@@ -104,15 +148,19 @@ while ($row = mysql_fetch_assoc($result)) {
     //echo $row['pref_name'];
 header("Location: ../../main/index");
 }
-	echo "ユーザ登録してください";
 
 mysql_close($link);
 ?>
-<form method="post">
-<p>
-<input type="submit" name="are" value="＃１ボタン" >
-</p>
-</form>
+
+
+
+
+<div class="container">
+            <div class="span4 well">
+                <form class="form-horizontal">
+                    <fieldset>
+
+
 
 <?php
 
@@ -133,4 +181,40 @@ mysql_close($link);
 
 
 ?>
+
+
+
+
+                        <legend>ユーザ登録</legend>
+<form method="post">
+<p>
+<input type="submit" name="are" value="登録" >
+</p>
+</form>
+<!--
+//<?php
+//
+//
+//	} else {
+//		//
+//		$login_url = $facebook->getLoginUrl();
+//		echo 'ログインしてください: <a href=' .$login_url . '">login.</a>';
+//	}
+//} catch (FacebookApiException $e) {
+//
+//	$login_url = $facebook->getLoginUrl();
+//	echo 'ログインしてください!：<a href=' .$login_url . '">login.</a><br />';
+//	echo $e->getMessage();
+//	error_log($e->getType());
+//	error_log($e->getMessage());
+//}
+//
+//
+//?>
+-->
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
 </body>

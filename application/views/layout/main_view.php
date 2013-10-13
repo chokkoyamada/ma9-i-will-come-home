@@ -8,10 +8,16 @@
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
     <title><?php echo $title; ?></title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+	<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<script src="/js/bootstrap-datetimepicker.min.js"></script>
 	<style type='text/css'>
 	body {
-		min-height: 2000px;
-		padding-top: 70px;
+		padding-top: 50px;
+		background-color: #fdf0d2;
 	}
 	.icon-color-blue, .icon-color-blue a {
 	  color: #0080ff;
@@ -22,21 +28,59 @@
 	.icon-color-grey, .icon-color-grey a {
 	  color: #808080;
 	}
+	.customcolor-header {
+	  background-color: #F5B229;
+      padding-bottom: 0px;
+	  border-width: 0px;
+	}
+	.customcolor-header a:visited {
+		color: white;
+	}
+	.customcolor-header a:link {
+		color: white;
+	}
+	.customcolor-header a:hover {
+		color: white;
+	}
+	.customcolor-subheader {
+	  background-color: #918879;
+	  display:block;
+	  padding: -20px,-20px,-20px,-20px;
+      margin: -20px,-20px,-20px,-20px;
+      width:1680px;
+	  height:40px;
+	  box-sizing: border-box; 
+	  color: white;
+	}
+	.customcolor-subheader a:visited {
+		color: white;
+	}
+	.customcolor-subheader a:link {
+		color: white;
+	}
+	.customcolor-subheader a:hover {
+		color: white;
+	}
+	.customcolor-event {
+	  background-color: #89C22B;
+	}
+	.customcolor-calendar {
+	  background-color: #FDFDD2;
+	}
+	.customcolor-font {
+	  background-color: #38230D;
+	}
+	.customcolor-background {
+	  background-color: #fdf0d2;
+	}
 	</style>
 
-	<!-- Bootstrap core CSS -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-	<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-	<script src="/js/bootstrap-datetimepicker.min.js"></script>
   </head>
   <body>
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top customcolor-header">
+      <div class="container customcolor-header">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -87,18 +131,9 @@
         </div>
       </div>
     </div>
-    <div class="container">
-<div id="content_header">
-<?php echo $content_header; ?>
-</div>
 <div id="content_body">
 <?php echo  $content_body; ?>
 </div>
-<div id="content_footer">
-<?php echo $content_footer; ?>
-</div>
-    </div> <!-- /container -->
-
   </body>
 </html>
 </body>
