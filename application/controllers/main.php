@@ -17,13 +17,30 @@ class Main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function __construct()
 	{
-		$this->load->view('main/index');
+		parent::__construct();
+		$this->data = array();
+		$this->load->helper(array('my_layout'));
 	}
 
-	public function event()
+	public function index()
 	{
-		$this->load->view('main/event');
+		my_layout_view('main/index', $this->data);
+	}
+
+	public function create_event()
+	{
+		my_layout_view('main/create_event', $this->data);
+	}
+
+	public function create_schedule()
+	{
+		my_layout_view('main/create_schedule', $this->data);
+	}
+
+	public function select_week()
+	{
+		my_layout_view('main/select_week', $this->data);
 	}
 }

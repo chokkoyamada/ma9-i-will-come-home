@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
+<div>
 this is event page.
-</body>
-</html>
+</div>
