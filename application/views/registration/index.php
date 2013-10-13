@@ -1,22 +1,5 @@
 <?php
-/**
- * Copyright 2011 Facebook, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License. You may obtain
- * a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
-
 require 'facebook-php-sdk/src/facebook.php';
-
 // Create our Application instance (replace this with your appId and secret).
 $facebook = new Facebook(array(
   'appId'  => '566728813381579',
@@ -48,11 +31,9 @@ if ($user) {
 } else {
   $loginUrl = $facebook->getLoginUrl();
 }
-
-// This call will always work since we are fetching public data.
-$naitik = $facebook->api('/naitik');
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,52 +46,79 @@ $naitik = $facebook->api('/naitik');
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
-
-
 </head>
 <body>
-<!-- Fixed navbar -->
-
- <?php if ($user) { ?>
-      Your user profile is
-      <pre>
-        <?php print htmlspecialchars(print_r($user_profile, true)) ?>
-      </pre>
-    <?php } else { ?>
-      <fb:login-button></fb:login-button>
-    <?php } ?>
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId: '<?php echo $facebook->getAppID() ?>',
-          cookie: true,
-          xfbml: true,
-          oauth: true
-        });
-        FB.Event.subscribe('auth.login', function(response) {
-          window.location.reload();
-        });
-        FB.Event.subscribe('auth.logout', function(response) {
-          window.location.reload();
-        });
-      };
-      (function() {
-        var e = document.createElement('script'); e.async = true;
-        e.src = document.location.protocol +
-          '//connect.facebook.net/en_US/all.js';
-        document.getElementById('fb-root').appendChild(e);
-      }());
-    </script>
+welcome
+<?php
+try {
+	if($user) {
+		$user_profile = $facebook->api('/me?locale=ja_JP');
+		$user_name = $user_profile['name'];
+		$user_hometown = $user_profile['hometown']['name'];  
+	//	echo "<br>";
+	//	echo "名前:" . $user_name;
+	//	echo "<br>";
+	//	echo "fb_id:" . $user;
+	//	echo "<br>";
+	//	echo "故郷:" . $user_hometown;
+	//	echo "<br>";
 
 
+$link = mysql_connect('localhost', 'ma9nagoya', 'ma9nagoyapasswd');
+if (!$link) {
+    die('接続失敗です。'.mysql_error());
+}
 
+$db_selected = mysql_select_db('ma9nagoya', $link);
+if (!$db_selected){
+    die('データベース選択失敗です。'.mysql_error());
+}
+//$query = sprintf("SELECT * FROM cities WHERE cities_full_name='%s'",mysql_real_escape_string($user_hometown));
+$query = sprintf("SELECT * FROM cities WHERE cities_full_name='%s'",mysql_real_escape_string($user));
+
+$result = mysql_query($query);
+if (!$result) {
+    die('クエリーが失敗しました。'.mysql_error());
+	echo "クエリー失敗";
+}
+
+if (!$result) {
+    $message  = 'Invalid query: ' . mysql_error() . "\n";
+    $message .= 'Whole query: ' . $query;
+    die($message);
+}
+
+while ($row = mysql_fetch_assoc($result)) {
+    //echo $row['cities_code'];
+    //echo $row['cities_name'];
+    //echo $row['pref_name'];
+header("Location: ../../main/index");
+}
+	echo "ユーザ登録してください";
+
+mysql_close($link);
+?>
+<form name="Hai" method="POST" action="index.php">
+<input type="hidden" name="answer" value="1">
+<input type="submit" value="はい">
+</form>
+
+
+<?php
+
+
+	} else {
+		//
+		$login_url = $facebook->getLoginUrl();
+		echo 'ログインしてください: <a href=' .$login_url . '">login.</a>';
+	}
+} catch (FacebookApiException $e) {
+
+	$login_url = $facebook->getLoginUrl();
+	echo 'ログインしてください!：<a href=' .$login_url . '">login.</a><br />';
+	echo $e->getMessage();
+	error_log($e->getType());
+	error_log($e->getMessage());
+}
+?>
 </body>
-</html>

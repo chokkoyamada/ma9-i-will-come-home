@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -17,15 +17,73 @@ class Main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->data = array();
-		$this->load->helper(array('my_layout'));
-	}
-
 	public function index()
 	{
+
+		$this->data['me'] = array(
+			false,
+			false,
+			false,
+			false,
+			true,
+			true,
+			true
+		);
+
+		$this->data['users'] = array(
+			array(
+				array("friend"=> true),
+				array("friend"=> true),
+				array("friend"=> true),
+				array("friend"=> false)
+			),
+			array(
+				array("friend"=> true),
+				array("friend"=> true),
+				array("friend"=> true)
+			),
+			array(
+				array("friend"=> true),
+				array("friend"=> false),
+				array("friend"=> false)
+			),
+			array(),
+			array(
+				array("friend"=> false),
+				array("friend"=> false)
+			),
+			array(),
+			array(
+				array("friend"=> true)
+			)
+		);
+		$this->data['events'] = array(
+			array(
+				array("public"=> true),
+				array("public"=> true),
+			),
+			array(
+			),
+			array(
+				array("public"=> true),
+				array("public"=> false),
+				array("public"=> false)
+			),
+			array(
+				array("public"=> true),
+				array("public"=> true)
+			),
+			array(
+				array("public"=> false),
+				array("public"=> false)
+			),
+			array(
+				array("public"=> false)
+			),
+			array(
+				array("public"=> true)
+			)
+		);
 		my_layout_view('main/index', $this->data);
 	}
 

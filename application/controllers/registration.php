@@ -17,6 +17,12 @@ class Registration extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->data = array();
+		$this->data['title'] = '帰省日調整さん - 海士町';
+	}
 	public function index()
 	{
 		$this->load->view('registration/index.php');

@@ -7,11 +7,14 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>帰省日調整さん</title>
+    <title><?php echo $title; ?></title>
 	<style type='text/css'>
 	body {
 		min-height: 2000px;
 		padding-top: 70px;
+	}
+	.icon-color-blue, .icon-color-blue a {
+	  color: #0080ff;
 	}
 	.icon-color-red, .icon-color-red a {
 	  color: #ff0000;
@@ -40,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/main/">帰省日調整さん</a>
+          <a class="navbar-brand" href="/main/"><?php echo $title; ?></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
