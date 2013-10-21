@@ -9,12 +9,15 @@
 			10/<?php echo $x + 1 . "(月)"; ?>
 		</div>
 
-		<div class="col-xs-4 col-md-2">
+		<div class="col-xs-4 col-md-2 <?php if($me[$x])echo 'style="background-color:white"'; ?>">
 			<?php if($me[$x]): ?>
-			<span class="glyphicon glyphicon-user icon-color-blue"></span>
 			<?php endif; ?>
 			<?php foreach($users[$x] as $user): ?>
-			<a href='/user/'><span class="glyphicon glyphicon-user <?php if($user['friend']){echo 'icon-color-red';}else{echo 'icon-color-grey';} ?>"></span></a>
+			<?php if($user['friend']): ?>
+			<a href='/user/'><img src="/img/humanOrange.png" width=15px height=15px /></a>
+			<?php else: ?>
+			<a href='/user/'><img src="/img/humanWhite.png" width=15px height=15px /></a>
+			<?php endif; ?>
 			<?php endforeach; ?>
 		</div>
 

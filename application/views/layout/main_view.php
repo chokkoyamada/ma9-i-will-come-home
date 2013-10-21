@@ -16,7 +16,7 @@
 	<script src="/js/bootstrap-datetimepicker.min.js"></script>
 	<style type='text/css'>
 	body {
-		padding-top: 50px;
+		padding-top: 61px;
 		background-color: #fdf0d2;
 	}
 	.icon-color-blue, .icon-color-blue a {
@@ -31,7 +31,8 @@
 	.customcolor-header {
 	  background-color: #F5B229;
       padding-bottom: 0px;
-	  border-width: 0px;
+	  border-width: 10px 0px 0px 0px;
+	  border-color: #203b76;
 	}
 	.customcolor-header a:visited {
 		color: white;
@@ -47,7 +48,6 @@
 	  display:block;
 	  padding: -20px,-20px,-20px,-20px;
       margin: -20px,-20px,-20px,-20px;
-      width:1680px;
 	  height:40px;
 	  box-sizing: border-box; 
 	  color: white;
@@ -73,8 +73,10 @@
 	.customcolor-background {
 	  background-color: #fdf0d2;
 	}
+	.customcolor-top {
+	  background-color: #203b76;
+	}
 	</style>
-
   </head>
   <body>
 
@@ -134,7 +136,9 @@
 <div id="content_body">
 <?php echo  $content_body; ?>
 </div>
-  </body>
+<div class='container customcolor-top' style='height:10px;'>
+</div>
+</body>
 </html>
 </body>
 </html>

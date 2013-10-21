@@ -66,6 +66,17 @@ if (!$db_selected){
 //$query = sprintf("SELECT * FROM cities WHERE cities_full_name='%s'",mysql_real_escape_string($user_hometown));
 		$user_name = $user_profile['name'];
 //$query = sprintf("INSERT INTO users (name,fb_id) VALUES (%s,%s)",mysql_real_escape_string($user_name),mysql_real_escape_string($user));
+$query = sprintf("SELECT * FROM users WHERE fb_id='%s'",mysql_real_escape_string($user));
+$result = mysql_query($query);
+if (!$result) {
+    die('クエリーが失敗しました。'.mysql_error());
+	echo "クエリー失敗";
+}
+while ($row = mysql_fetch_assoc($result)) {
+$id_exist = 1;
+}
+if($id_exist==1){
+
 $query = "INSERT INTO users (name,fb_id) VALUES ('$user_name','$user')";
 
 
@@ -73,7 +84,7 @@ $result = mysql_query($query);
 if (!$result) {
     die('クエリーが失敗しました。'.mysql_error());
 	echo "クエリー失敗";
-}
+}}
 
 //$query = "INSERT INTO user_cities (id,citites_code) VALUES ('$user_name','$user')";
 
@@ -146,7 +157,7 @@ while ($row = mysql_fetch_assoc($result)) {
     //echo $row['cities_code'];
     //echo $row['cities_name'];
     //echo $row['pref_name'];
-header("Location: ../../main/index");
+header("Location: ../../../index");
 }
 
 mysql_close($link);
@@ -188,7 +199,7 @@ mysql_close($link);
                         <legend>ユーザ登録</legend>
 <form method="post">
 <p>
-<input type="submit" name="are" value="登録" >
+<input type="submit" name="are" value="facebookアカウントを登録" >
 </p>
 </form>
 <!--
